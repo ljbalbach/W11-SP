@@ -7,10 +7,10 @@ LFLAGS = $(DFLAG) $(GFLAGS)
 
 all: SumSquaresPipeline SievePipeline
 
-SumSquaresPipeline: SumSquaresPipeline.o Pipeline.o 
+SumSquaresPipeline: SumSquaresPipeline.o Pipeline.o ListNode.o
 	$(CC) $(LFLAGS) SumSquaresPipeline.o Pipeline.o -o SumSquaresPipeline
 
-SievePipeline: SievePipeline.o Pipeline.o 
+SievePipeline: SievePipeline.o Pipeline.o ListNode.o
 	$(CC) $(LFLAGS) SievePipeline.o Pipeline.o -o SievePipeline
 
 
@@ -24,6 +24,9 @@ SumSquaresPipeline.o: SumSquaresPipeline.c
 
 Pipeline.o: Pipeline.c Pipeline.h
 	$(CC) $(CFLAGS) Pipeline.c
+
+ListNode.o: ListNode.c ListNode.h
+	$(CC) $(CFLAGS) ListNode.c
 
 
 clean:

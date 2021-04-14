@@ -34,7 +34,11 @@ bool Pipeline_add(Pipeline* this, Function f) {
 
 
 void Pipeline_execute(Pipeline* this) {
-    
+    ListNode *current = this->head;
+    for (int i = 0; i < this->current_size; i++) {
+        int child = fork();
+        current = current->next;
+    }
 }
 
 
