@@ -175,7 +175,7 @@ void Pipeline_free(Pipeline* this) {
     while (current != NULL) {           //free all nodes
         ListNode *temp = current;
         current = current->next;
-        free(temp);
+        ListNode_destroy(temp);
         this->current_size--;
     }
     free(this);                             //free the pipeline
