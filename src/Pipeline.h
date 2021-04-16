@@ -11,7 +11,8 @@
 #include <stdbool.h>
 #include "ListNode.h"
 
-typedef void (*Function)(int input, int output);
+typedef int Pipe[2];
+//typedef void (*Function)(int input, int output);
 
 /* You should define your struct Pipeline here */
 typedef struct Pipeline {

@@ -7,7 +7,8 @@
 #ifndef LISTNODE_H_
 #define LISTNODE_H_
 
-#include "Pipeline.h"
+//#include "Pipeline.h"
+typedef void (*Function)(int input, int output);
 
 typedef struct ListNode ListNode;
 struct ListNode {
