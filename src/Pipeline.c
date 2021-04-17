@@ -45,7 +45,7 @@ void Pipeline_execute(Pipeline* this) {
     if (child != 0) {           //parent
         wait(NULL);
         close(pipeList[0][1]);
-        current->f(pipeList[0][1], 0);
+        current->f(pipeList[0][0], 0);
         close(pipeList[0][0]);
     } else {                    //child
         for (int i = 1; i < this->current_size; i++) {
@@ -59,11 +59,11 @@ void Pipeline_execute(Pipeline* this) {
 
             if (tempChild != 0) {        //parent
                 wait(NULL);
-                close(pipeList[i - 1][1]);
-                close(pipeList[i][0]);
-                current->f(pipeList[i][0], pipeList[i - 1][1]);
                 close(pipeList[i - 1][0]);
                 close(pipeList[i][1]);
+                current->f(pipeList[i][0], pipeList[i - 1][1]);
+                close(pipeList[i - 1][1]);
+                close(pipeList[i][0]);
                 exit(0);
             } else if (current->next == NULL) {
                 exit(0);
