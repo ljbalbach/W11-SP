@@ -43,9 +43,9 @@ void Pipeline_execute(Pipeline* this) {
     }
 
     if (child != 0) {           //parent
-        //close(pipeList[0][1]);
+        close(pipeList[0][1]);
         current->f(pipeList[0][0], 0);
-        //close(pipeList[0][0]);
+        close(pipeList[0][0]);
         wait(NULL);
     } else {                    //child
         int tempChild;
@@ -59,8 +59,10 @@ void Pipeline_execute(Pipeline* this) {
 
             if (tempChild != 0) {        //parent
                 printf("process %i with  i = %d\n", getpid(), i);
-                //close(pipeList[i - 1][0]);
-                //close(pipeList[i][1]);
+                close(pipeList[i - 1][0]);
+                close(pipeList[i][1]);
+                open(pipeList[i - 1][1]);
+                open(pipeList[i][0]);
                 current->f(pipeList[i][0], pipeList[i - 1][1]);
                 //close(pipeList[i - 1][1]);
                 //close(pipeList[i][0]);
