@@ -8,10 +8,10 @@ LFLAGS = $(DFLAG) $(GFLAGS)
 all: SumSquaresPipeline SievePipeline
 
 SumSquaresPipeline: SumSquaresPipeline.o Pipeline.o ListNode.o
-	$(CC) $(LFLAGS) SumSquaresPipeline.o Pipeline.o -o SumSquaresPipeline
+	$(CC) $(LFLAGS) SumSquaresPipeline.o Pipeline.o ListNode.o -o SumSquaresPipeline
 
 SievePipeline: SievePipeline.o Pipeline.o ListNode.o
-	$(CC) $(LFLAGS) SievePipeline.o Pipeline.o -o SievePipeline
+	$(CC) $(LFLAGS) SievePipeline.o Pipeline.o ListNode.o -o SievePipeline
 
 
 SievePipeline.o: SievePipeline.c

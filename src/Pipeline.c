@@ -11,7 +11,6 @@
 #include <stdlib.h>
 
 #include "Pipeline.h"
-#include "ListNode.h"
 
 
 Pipeline* new_Pipeline() {
