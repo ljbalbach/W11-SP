@@ -36,4 +36,4 @@ ListNode.o: ListNode.c ListNode.h
 
 
 clean:
-	$(RM) SumSquaresPipeline SievePipeline *.o
+	$(RM) SumSquaresPipeline SievePipeline TestPipeline *.o
