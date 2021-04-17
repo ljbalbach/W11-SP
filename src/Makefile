@@ -5,7 +5,7 @@ GFLAGS = -Wall -Wextra
 CFLAGS = $(DFLAG) $(GFLAGS) -c
 LFLAGS = $(DFLAG) $(GFLAGS)
 
-all: SumSquaresPipeline SievePipeline
+all: SumSquaresPipeline SievePipeline TestPipeline
 
 SumSquaresPipeline: SumSquaresPipeline.o Pipeline.o ListNode.o
 	$(CC) $(LFLAGS) SumSquaresPipeline.o Pipeline.o ListNode.o -o SumSquaresPipeline

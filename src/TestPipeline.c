@@ -33,6 +33,13 @@ static void printInts(int input, int output) {
     }
 }
 
+static void cleanupExit(Pipeline *p) {
+    if (p) {
+        Pipeline_free(p);
+    }
+    exit(-1);
+}
+
 int main() {
     scanf("%d", &num_ints);
     printf("Setting up pipeline to calculate the sum of squares of integers 1 to %i.\n", num_ints);
