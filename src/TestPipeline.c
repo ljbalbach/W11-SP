@@ -23,6 +23,17 @@ static void generateInts(int input, int output) {
     }
 }
 
+static void doubleInts(int input, int output) {
+    printf("doubleInts: process %i, parent %i\n", getpid(), getppid());
+    int number;
+    for (int i = 1; i <= num_ints; i++) {
+        read(input, &number, sizeof(int));
+        printf("recieving %d\n", number);
+        int out = number * 2;
+        write(output, &out, sizeof(int));
+    }
+}
+
 static void printInts(int input, int output) {
     close(output); // not used in last pipeline stage
     printf("printInts: process %i, parent %i\n", getpid(), getppid());
