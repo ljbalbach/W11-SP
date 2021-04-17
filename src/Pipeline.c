@@ -31,7 +31,7 @@ bool Pipeline_add(Pipeline* this, Function f) {
 void Pipeline_execute(Pipeline* this) {
     ListNode *current = this->head;
 
-    Pipe pipeList[this->current_size - 1];
+    Pipe pipeList[this->current_size];
     if (pipe(pipeList[0]) != 0) {
         printf("Failed to create pipe");
         exit(1);
@@ -59,16 +59,19 @@ void Pipeline_execute(Pipeline* this) {
 
             if (tempChild != 0) {        //parent
                 printf("process %i with  i = %d\n", getpid(), i);
-                if (current->next == NULL) {
-                    close(pipeList[i - 1][0]);
-                    current->f(0, pipeList[i - 1][1]);
-                } else {
-                    close(pipeList[i - 1][0]);
-                    close(pipeList[i][1]);
-                    current->f(pipeList[i][0], pipeList[i - 1][1]);
+                close(pipeList[i - 1][0]);
+                close(pipeList[i][1]);
+                current->f(pipeList[i][0], pipeList[i - 1][1]);
+                close(pipeList[i - 1][1]);
+                close(pipeList[i][0]);
+
+                close(pipeList[i - 1][1]);
+                int number;
+                for (int i = 1; i <= 10; i++) {
+                    read(pipeList[i - 1][0], &number, sizeof(int));
+                    printf("print recieving %d\n", number);
                 }
-                //close(pipeList[i - 1][1]);
-                //close(pipeList[i][0]);
+
                 wait(NULL);
                 exit(0);
             } else if (current->next == NULL) {         //at the end of the list?
