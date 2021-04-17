@@ -29,7 +29,7 @@ static void squareInts(int input, int output) {
         int number;
         read(input, &number, sizeof(int));
         printf("square number = %d\n", number);
-        int result = number * number;
+        int result = 1;
         write(output, &result, sizeof(int));
     }
 }
