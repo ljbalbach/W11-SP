@@ -28,7 +28,7 @@ static void doubleInts(int input, int output) {
     int number;
     for (int i = 1; i <= num_ints; i++) {
         read(input, &number, sizeof(int));
-        printf("recieving %d\n", number);
+        printf("double recieving %d\n", number);
         int out = number * 2;
         write(output, &out, sizeof(int));
     }
@@ -40,7 +40,7 @@ static void printInts(int input, int output) {
     int number;
     for (int i = 1; i <= num_ints; i++) {
         read(input, &number, sizeof(int));
-        printf("recieving %d\n", number);
+        printf("print recieving %d\n", number);
     }
 }
 

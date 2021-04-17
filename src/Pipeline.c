@@ -58,6 +58,7 @@ void Pipeline_execute(Pipeline* this) {
             }
 
             if (tempChild != 0) {        //parent
+                printf("process %i with  i = %d", getpid(), i);
                 close(pipeList[i - 1][0]);
                 close(pipeList[i][1]);
                 current->f(pipeList[i][0], pipeList[i - 1][1]);
