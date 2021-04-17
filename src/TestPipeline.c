@@ -59,6 +59,7 @@ int main() {
 
     if (p == NULL) cleanupExit(p);
     if (!Pipeline_add(p, generateInts)) cleanupExit(p);
+    if (!Pipeline_add(p, doubleInts)) cleanupExit(p);
     if (!Pipeline_add(p, printInts)) cleanupExit(p);
     Pipeline_execute(p);
 
