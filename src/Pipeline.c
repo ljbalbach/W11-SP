@@ -43,7 +43,9 @@ void Pipeline_execute(Pipeline* this) {
     }
 
     if (child != 0) {           //parent
+        printf("initial parent: process %i", getpid());
         wait(NULL);
+        printf("initial parent: process %i", getpid());
         close(pipeList[0][1]);
         current->f(pipeList[0][1], 0);
         close(pipeList[0][0]);
@@ -51,12 +53,14 @@ void Pipeline_execute(Pipeline* this) {
         for (int i = 1; i < this->current_size; i++) {
             current = current->next;
             int tempChild;
+            
             if ((tempChild = fork()) < 0) {
                 printf("Failed to create child #%d", i);
                 exit(1);
             }
 
             if (tempChild != 0) {        //parent
+                printf("looping parent: process %i, parent %i\n", getpid(), getppid());
                 wait(NULL);
                 close(pipeList[i - 1][1]);
                 close(pipeList[i][0]);
@@ -65,6 +69,7 @@ void Pipeline_execute(Pipeline* this) {
                 close(pipeList[i][1]);
                 exit(0);
             } else if (current->next == NULL) {
+                printf("end of list: process %i, parent %i\n", getpid(), getppid());
                 close(pipeList[i][0]);
                 current->f(0, pipeList[i][1]);
                 close(pipeList[i][1]);
