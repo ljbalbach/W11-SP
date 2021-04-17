@@ -58,23 +58,16 @@ void Pipeline_execute(Pipeline* this) {
             }
 
             if (tempChild != 0) {        //parent
-                printf("looping parent: process %i, parent %i\n", getpid(), getppid());
                 wait(NULL);
                 close(pipeList[i - 1][1]);
                 close(pipeList[i][0]);
                 current->f(pipeList[i][0], pipeList[i - 1][1]);
                 close(pipeList[i - 1][0]);
                 close(pipeList[i][1]);
-                printf("exiting\n");
                 exit(0);
             } else if (current->next == NULL) {
-                printf("end of list: process %i, parent %i\n", getpid(), getppid());
-                /*close(pipeList[i][0]);
-                current->f(0, pipeList[i][1]);
-                close(pipeList[i][1]);*/
                 exit(0);
             }
-            printf("looping\n");
         }
     }
 
