@@ -67,7 +67,7 @@ void Pipeline_execute(Pipeline* this) {
                 current->f(pipeList[i - 1][0], pipeList[i][1]);
                 close(pipeList[i - 1][0]);
                 close(pipeList[i][1]);
-                printf("exiting");
+                printf("\nexiting");
                 exit(0);
             } else if (current->next == NULL) {
                 printf("end of list: process %i, parent %i\n", getpid(), getppid());
@@ -76,7 +76,7 @@ void Pipeline_execute(Pipeline* this) {
                 close(pipeList[i][1]);*/
                 exit(0);
             }
-            printf("looping");
+            printf("\nlooping");
         }
     }
 

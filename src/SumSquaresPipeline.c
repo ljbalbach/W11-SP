@@ -28,6 +28,7 @@ static void squareInts(int input, int output) {
     for (int i = 1; i <= num_ints; i++) {
         int number;
         read(input, &number, sizeof(int));
+        printf("\nnumber = %d", number);
         int result = number * number;
         write(output, &result, sizeof(int));
     }
