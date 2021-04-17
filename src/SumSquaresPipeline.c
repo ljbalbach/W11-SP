@@ -25,6 +25,7 @@ static void generateInts(int input, int output) {
 
 static void squareInts(int input, int output) {
     printf("squareInts: process %i, parent %i\n", getpid(), getppid());
+    printf("num_ints = %d\n", num_ints);
     for (int i = 1; i <= num_ints; i++) {
         int number;
         printf("here");
