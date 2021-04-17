@@ -41,7 +41,7 @@ void Pipeline_execute(Pipeline* this) {
         printf("Failed to create child #0");
         exit(1);
     }
-
+    
     if (child != 0) {           //parent
         printf("initial parent: process %i", getpid());
         wait(NULL);
@@ -70,9 +70,9 @@ void Pipeline_execute(Pipeline* this) {
                 exit(0);
             } else if (current->next == NULL) {
                 printf("end of list: process %i, parent %i\n", getpid(), getppid());
-                close(pipeList[i][0]);
+                /*close(pipeList[i][0]);
                 current->f(0, pipeList[i][1]);
-                close(pipeList[i][1]);
+                close(pipeList[i][1]);*/
                 exit(0);
             }
         }
