@@ -18,6 +18,7 @@ static void generateInts(int input, int output) {
     close(input); // not used in first pipeline stage
     printf("generateInts: process %i, parent %i\n", getpid(), getppid());
     for (int i = 1; i <= num_ints; i++) {
+        printf("number = %d\n", i);
         write(output, &i, sizeof(int));
     }
 }
@@ -40,7 +41,6 @@ static void sumIntsAndPrint(int input, int output) {
     printf("sumIntsAndPrint: process %i, parent %i\n", getpid(), getppid());
     int number = 0;
     int result = 0;
-    printf("\n");
     for (int i = 1; i <= num_ints; i++) {
         read(input, &number, sizeof(int));
         printf("number = %d\n", number);
