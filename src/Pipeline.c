@@ -58,6 +58,7 @@ void Pipeline_execute(Pipeline* this) {
             }
 
             if (tempChild != 0) {        //parent
+                wait(NULL);
                 printf("process %i with  i = %d\n", getpid(), i);
                 close(pipeList[i - 1][0]);
                 close(pipeList[i][1]);
@@ -69,10 +70,10 @@ void Pipeline_execute(Pipeline* this) {
                 int number;
                 for (int i = 1; i <= 10; i++) {
                     read(pipeList[i - 1][0], &number, sizeof(int));
-                    printf("print recieving %d\n", number);
+                    printf("reading the reveive %d\n", number);
                 }
 
-                wait(NULL);
+                //wait(NULL);
                 exit(0);
             } else if (current->next == NULL) {         //at the end of the list?
                 exit(0);
