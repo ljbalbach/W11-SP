@@ -13,12 +13,18 @@ SumSquaresPipeline: SumSquaresPipeline.o Pipeline.o ListNode.o
 SievePipeline: SievePipeline.o Pipeline.o ListNode.o
 	$(CC) $(LFLAGS) SievePipeline.o Pipeline.o ListNode.o -o SievePipeline
 
+TestPipeline: TestPipeline.o Pipeline.o ListNode.o
+	$(CC) $(LFLAGS) TestPipeline.o Pipeline.o ListNode.o -o TestPipeline
+
 
 SievePipeline.o: SievePipeline.c
 	$(CC) $(CFLAGS) SievePipeline.c
 
 SumSquaresPipeline.o: SumSquaresPipeline.c
 	$(CC) $(CFLAGS) SumSquaresPipeline.c
+
+TestPipeline.o: TestPipeline.c
+	$(CC) $(CFLAGS) TestPipeline.c
 
 
 
