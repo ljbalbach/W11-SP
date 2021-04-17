@@ -18,7 +18,6 @@ static void generateInts(int input, int output) {
     close(input); // not used in first pipeline stage
     printf("generateInts: process %i, parent %i\n", getpid(), getppid());
     for (int i = 1; i <= num_ints; i++) {
-        printf("number = %d\n", i);
         write(output, &i, sizeof(int));
     }
 }
