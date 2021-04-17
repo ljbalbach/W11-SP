@@ -43,9 +43,7 @@ void Pipeline_execute(Pipeline* this) {
     }
 
     if (child != 0) {           //parent
-        printf("initial parent: process %i", getpid());
         wait(NULL);
-        printf("initial parent: process %i", getpid());
         close(pipeList[0][1]);
         current->f(pipeList[0][1], 0);
         close(pipeList[0][0]);
@@ -64,7 +62,7 @@ void Pipeline_execute(Pipeline* this) {
                 wait(NULL);
                 close(pipeList[i - 1][1]);
                 close(pipeList[i][0]);
-                current->f(pipeList[i - 1][0], pipeList[i][1]);
+                current->f(pipeList[i][0], pipeList[i - 1][1]);
                 close(pipeList[i - 1][0]);
                 close(pipeList[i][1]);
                 printf("exiting\n");
