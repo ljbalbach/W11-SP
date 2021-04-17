@@ -48,9 +48,9 @@ void Pipeline_execute(Pipeline* this) {
         close(pipeList[0][0]);
         wait(NULL);
     } else {                    //child
+        int tempChild;
         for (int i = 1; i < this->current_size; i++) {
             current = current->next;
-            int tempChild;
             
             if ((tempChild = fork()) < 0) {
                 printf("Failed to create child #%d", i);
