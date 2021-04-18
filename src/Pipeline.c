@@ -63,6 +63,13 @@ void Pipeline_execute(Pipeline* this) {
                 //close(pipeList[i - 1][0]);
                 //close(pipeList[i][1]);
                 current->f(pipeList[i][0], pipeList[i - 1][1]);
+                if (i == 2) {
+                    for (int i = 1; i <= 10; i++) {
+                        int number;
+                        read(pipeList[i - 1][0], &number, sizeof(int));
+                        printf("Getting an output: %d\n", number);
+                    }
+                }
                 //close(pipeList[i - 1][1]);
                 //close(pipeList[i][0]);
                 
