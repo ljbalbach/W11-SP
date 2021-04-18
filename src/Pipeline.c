@@ -45,7 +45,7 @@ void Pipeline_execute(Pipeline* this) {
     if (child != 0) {           //parent
         wait(NULL);
         //close(pipeList[0][1]);
-        current->f(pipeList[0][0], 0);
+        current->f(pipeList[0][0], NULL);
         //close(pipeList[0][0]);
     } else {                    //child
         int tempChild;
