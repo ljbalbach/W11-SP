@@ -24,12 +24,12 @@ Pipeline* new_Pipeline() {
 bool Pipeline_add(Pipeline* this, Function f) {
     this->head = new_ListNode(f, this->head);
 	this->current_size++;
-    return true;
+    return (this->head != NULL);
 }
 
 
 void Pipeline_execute(Pipeline* this) {
-    ListNode *current = this->head;
+    /*ListNode *current = this->head;
 
     Pipe pipeList[this->current_size];
     for (int i = 0; i < this->current_size; i++){
@@ -69,28 +69,39 @@ void Pipeline_execute(Pipeline* this) {
                 exit(0);
             }
         }
+    }*/
+
+    ListNode *current = this->head;
+    int child;
+    Pipe pipeList[this->current_size];
+    for (int i = 0; i < this->current_size; i++){
+        if (pipe(pipeList[i]) != 0) {
+            printf("Failed to create pipe");
+            exit(1);
+        }
     }
 
-    /*ListNode *current = this->head;
-    int child;
-    int input[2], output[2];
-    for (int i = 1; i < this->current_size - 1; i++) {
+    for (int i = 1; i < this->current_size + 1; i++) {
         
+        /*if (pipe(pipeList[i]) != 0) {
+            printf("Failed to create pipe");
+            exit(1);
+        }*/
+
         if ((child = fork()) < 0) {
             printf("Failed to create child #0");
             exit(1);
         }
+
         if (child != 0) {           //parent
-            current->f(input[0], output[1]);
+            current->f(pipeList[i][0], pipeList[i - 1][1]);
             wait(NULL);
             exit(0);
         } else if (current->next == NULL) {
             exit(0);
         }
         current = current->next;
-        output[0] = input[0];
-        output[1] = input[1];
-    }*/
+    }
 
 
 

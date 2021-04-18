@@ -144,19 +144,6 @@ int pushThreeFunctions() {
     return TEST_SUCCESS;
 }
 
-/*
- * Checks that pushing to a full list returns false.
- *
-int pushFail() {
-    float j = 1.5;
-    for (int i = 0; i < MAX_VALUE - 1; i++) {
-        Stack_push(stack, j);
-    }
-    assert(Stack_push(stack, j) == true);
-    assert(Stack_push(stack, j) == false);
-    return TEST_SUCCESS;
-}*/
-
 
 
 /*
@@ -168,7 +155,6 @@ int main() {
     runTest(pushOneFunction);
     runTest(pushTwoFunctions);
     runTest(pushThreeFunctions);
-    //runTest(pushFail);
 
     printf("Stack Tests complete: %d / %d tests successful.\n----------------\n", success_count, total_count);
 }
