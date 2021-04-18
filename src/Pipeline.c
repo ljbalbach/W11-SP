@@ -68,7 +68,7 @@ void Pipeline_execute(Pipeline* this) {
                 if (i == 2) {
                     for (int i = 1; i <= 10; i++) {
                         int number;
-                        read(pipeList[1][0], &number, sizeof(int));
+                        read(pipeList[i - 1][0], &number, sizeof(int));
                         printf("Getting an output: %d\n", number);
                     }
                     close(pipeList[1][0]);
