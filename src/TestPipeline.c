@@ -18,7 +18,6 @@ static void generateInts(int input, int output) {
     close(input); // not used in first pipeline stage
     printf("generateInts: process %i, parent %i\n", getpid(), getppid());
     for (int i = 1; i <= num_ints; i++) {
-        printf("sending %d\n", i);
         write(output, &i, sizeof(int));
     }
 }
@@ -28,8 +27,7 @@ static void doubleInts(int input, int output) {
     int number;
     for (int i = 1; i <= num_ints; i++) {
         read(input, &number, sizeof(int));
-        printf("double recieving %d\n", number);
-        int out = 5;    //number * 2;
+        int out = number * 2;
         write(output, &out, sizeof(int));
     }
 }
@@ -40,7 +38,6 @@ static void printInts(int input, int output) {
     int number;
     for (int i = 1; i <= num_ints; i++) {
         read(input, &number, sizeof(int));
-        printf("print recieving %d\n", number);
     }
 }
 
@@ -53,7 +50,7 @@ static void cleanupExit(Pipeline *p) {
 
 int main() {
     scanf("%d", &num_ints);
-    printf("Setting up pipeline to calculate the sum of squares of integers 1 to %i.\n", num_ints);
+    printf("Setting up pipeline to calculate the the double of each integer 1 to %i.\n", num_ints);
 
     Pipeline *p = new_Pipeline();
 

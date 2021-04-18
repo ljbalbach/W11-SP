@@ -28,7 +28,6 @@ static void squareInts(int input, int output) {
     for (int i = 1; i <= num_ints; i++) {
         int number;
         read(input, &number, sizeof(int));
-        printf("square number = %d\n", number);
         int result = number * number;
         write(output, &result, sizeof(int));
     }
@@ -42,7 +41,6 @@ static void sumIntsAndPrint(int input, int output) {
     int result = 0;
     for (int i = 1; i <= num_ints; i++) {
         read(input, &number, sizeof(int));
-        printf("sumAndPrint number = %d\n", number);
         result += number;
     }
     printf("sumIntsAndPrint: result = %i\n", result);
