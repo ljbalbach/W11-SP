@@ -32,9 +32,11 @@ void Pipeline_execute(Pipeline* this) {
     ListNode *current = this->head;
 
     Pipe pipeList[this->current_size];
-    if (pipe(pipeList[0]) != 0) {
-        printf("Failed to create pipe");
-        exit(1);
+    for (int i = 0; i < this->current_size; i++){
+        if (pipe(pipeList[i]) != 0) {
+            printf("Failed to create pipe");
+            exit(1);
+        }
     }
     int child;
     if ((child = fork()) < 0) {
