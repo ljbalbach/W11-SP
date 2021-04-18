@@ -38,6 +38,7 @@ static void printInts(int input, int output) {
     int number;
     for (int i = 1; i <= num_ints; i++) {
         read(input, &number, sizeof(int));
+        printf("Integer number %d: %d\n", i, number);
     }
 }
 
