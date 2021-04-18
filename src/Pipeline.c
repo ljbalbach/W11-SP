@@ -59,13 +59,11 @@ void Pipeline_execute(Pipeline* this) {
 
             if (tempChild != 0) {        //parent
                 printf("process %i with  i = %d\n", getpid(), i);
-                close(pipeList[i - 1][0]);
+                //close(pipeList[i - 1][0]);
                 close(pipeList[i][1]);
-                open(pipeList[i - 1][1]);
-                open(pipeList[i][0]);
                 current->f(pipeList[i][0], pipeList[i - 1][1]);
                 //close(pipeList[i - 1][1]);
-                //close(pipeList[i][0]);
+                close(pipeList[i][0]);
                 wait(NULL);
                 exit(0);
             } else if (current->next == NULL) {         //at the end of the list?
