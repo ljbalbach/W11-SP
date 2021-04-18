@@ -29,7 +29,7 @@ static void doubleInts(int input, int output) {
     for (int i = 1; i <= num_ints; i++) {
         read(input, &number, sizeof(int));
         printf("double recieving %d\n", number);
-        int out = number * 2;
+        int out = 5;    //number * 2;
         write(output, &out, sizeof(int));
     }
 }
