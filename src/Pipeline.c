@@ -45,7 +45,7 @@ void Pipeline_execute(Pipeline* this) {
     if (child != 0) {           //parent
         wait(NULL);
         //close(pipeList[0][1]);
-        current->f(pipeList[0][0], NULL);
+        current->f(pipeList[0][0], 0);
         //close(pipeList[0][0]);
     } else {                    //child
         int tempChild;
@@ -63,8 +63,8 @@ void Pipeline_execute(Pipeline* this) {
                 //close(pipeList[i - 1][0]);
                 //close(pipeList[i][1]);
                 current->f(pipeList[i][0], pipeList[i - 1][1]);
-                close(pipeList[i - 1][1]);
-                close(pipeList[i][0]);
+                //close(pipeList[i - 1][1]);
+                //close(pipeList[i][0]);
                 if (i == 2) {
                     printf("outputted to %d and now reading from\n", (i - 1));
                     for (int j = 1; j <= 10; j++) {
@@ -72,7 +72,7 @@ void Pipeline_execute(Pipeline* this) {
                         read(pipeList[i - 1][0], &number, sizeof(int));
                         printf("Getting an output: %d\n", number);
                     }
-                    close(pipeList[1][0]);
+                    //close(pipeList[1][0]);
                 }
                 //close(pipeList[i - 1][1]);
                 //close(pipeList[i][0]);
