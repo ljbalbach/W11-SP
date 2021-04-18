@@ -5,7 +5,7 @@ GFLAGS = -Wall -Wextra
 CFLAGS = $(DFLAG) $(GFLAGS) -c
 LFLAGS = $(DFLAG) $(GFLAGS)
 
-all: SumSquaresPipeline SievePipeline TestPipeline
+all: SumSquaresPipeline SievePipeline DoublePipeline SimplePipeline
 
 SumSquaresPipeline: SumSquaresPipeline.o Pipeline.o ListNode.o
 	$(CC) $(LFLAGS) SumSquaresPipeline.o Pipeline.o ListNode.o -o SumSquaresPipeline
@@ -13,8 +13,11 @@ SumSquaresPipeline: SumSquaresPipeline.o Pipeline.o ListNode.o
 SievePipeline: SievePipeline.o Pipeline.o ListNode.o
 	$(CC) $(LFLAGS) SievePipeline.o Pipeline.o ListNode.o -o SievePipeline
 
-TestPipeline: TestPipeline.o Pipeline.o ListNode.o
-	$(CC) $(LFLAGS) TestPipeline.o Pipeline.o ListNode.o -o TestPipeline
+DoublePipeline: DoublePipeline.o Pipeline.o ListNode.o
+	$(CC) $(LFLAGS) DoublePipeline.o Pipeline.o ListNode.o -o DoublePipeline
+
+SimplePipeline: SimplePipeline.o Pipeline.o ListNode.o
+	$(CC) $(LFLAGS) SimplePipeline.o Pipeline.o ListNode.o -o SimplePipeline
 
 
 SievePipeline.o: SievePipeline.c
@@ -23,8 +26,11 @@ SievePipeline.o: SievePipeline.c
 SumSquaresPipeline.o: SumSquaresPipeline.c
 	$(CC) $(CFLAGS) SumSquaresPipeline.c
 
-TestPipeline.o: TestPipeline.c
-	$(CC) $(CFLAGS) TestPipeline.c
+DoublePipeline.o: DoublePipeline.c
+	$(CC) $(CFLAGS) DoublePipeline.c
+
+SimplePipeline.o: SimplePipeline.c
+	$(CC) $(CFLAGS) SimplePipeline.c
 
 
 
@@ -36,4 +42,4 @@ ListNode.o: ListNode.c ListNode.h
 
 
 clean:
-	$(RM) SumSquaresPipeline SievePipeline TestPipeline *.o
+	$(RM) SumSquaresPipeline SievePipeline DoublePipeline SimplePipeline *.o
