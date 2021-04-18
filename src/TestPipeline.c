@@ -7,6 +7,8 @@
  */
 
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include "Pipeline.h"
 #include "myassert.h"
 
@@ -108,7 +110,7 @@ static void fakeFinalFunction(int input, int output) {
  */
 int pushOneFunction() {
     assert(Pipeline_add(pipeline, fakeInitialFunction) == true);
-    assert(pipeline->head == fakeInitialFunction);
+    assert(pipeline->head->f == fakeInitialFunction);
     assert(pipeline->current_size == 1);
     return TEST_SUCCESS;
 }
@@ -118,10 +120,10 @@ int pushOneFunction() {
  */
 int pushTwoFunctions() {
     assert(Pipeline_add(pipeline, fakeInitialFunction) == true);
-    assert(pipeline->head == fakeInitialFunction);
+    assert(pipeline->head->f == fakeInitialFunction);
     assert(pipeline->current_size == 1);
     assert(Pipeline_add(pipeline, fakeFinalFunction) == true);
-    assert(pipeline->head == fakeFinalFunction);
+    assert(pipeline->head->f == fakeFinalFunction);
     assert(pipeline->current_size == 2);
     return TEST_SUCCESS;
 }
@@ -131,13 +133,13 @@ int pushTwoFunctions() {
  */
 int pushThreeFunctions() {
     assert(Pipeline_add(pipeline, fakeInitialFunction) == true);
-    assert(pipeline->head == fakeInitialFunction);
+    assert(pipeline->head->f == fakeInitialFunction);
     assert(pipeline->current_size == 1);
     assert(Pipeline_add(pipeline, fakeMiddleFunction) == true);
-    assert(pipeline->head == fakeMiddleFunction);
+    assert(pipeline->head->f == fakeMiddleFunction);
     assert(pipeline->current_size == 2);
     assert(Pipeline_add(pipeline, fakeFinalFunction) == true);
-    assert(pipeline->head == fakeFinalFunction);
+    assert(pipeline->head->f == fakeFinalFunction);
     assert(pipeline->current_size == 3);
     return TEST_SUCCESS;
 }
