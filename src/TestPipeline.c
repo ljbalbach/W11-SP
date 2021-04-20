@@ -144,6 +144,17 @@ int pushThreeFunctions() {
     return TEST_SUCCESS;
 }
 
+/*
+ * Checks that no errors are thrown when executing the pipeline.
+ */
+int execute() {
+    assert(Pipeline_add(pipeline, fakeInitialFunction) == true);
+    assert(Pipeline_add(pipeline, fakeMiddleFunction) == true);
+    assert(Pipeline_add(pipeline, fakeFinalFunction) == true);
+    Pipeline_execute(pipeline);
+    return TEST_SUCCESS;
+}
+
 
 
 /*
@@ -155,6 +166,7 @@ int main() {
     runTest(pushOneFunction);
     runTest(pushTwoFunctions);
     runTest(pushThreeFunctions);
+    runTest(execute);
 
     printf("Stack Tests complete: %d / %d tests successful.\n----------------\n", success_count, total_count);
 }

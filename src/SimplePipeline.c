@@ -1,5 +1,5 @@
 /*
- * TestPipeline.c
+ * SimplePipeline.c tests basic send and receive of the Pipeline.
  *
  *  Created on: 17 Apr 2021
  *      Author: 190012003
@@ -12,6 +12,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+/*
+ * Creates an int to be sent to the next function.
+ */
 static void generateInt(int input, int output) {
     close(input); // not used in first pipeline stage
     printf("generateInt: process %i, parent %i\n", getpid(), getppid());
@@ -20,6 +23,9 @@ static void generateInt(int input, int output) {
     write(output, &i, sizeof(int));
 }
 
+/*
+ * Prints the int that was received.
+ */
 static void printInt(int input, int output) {
     close(output); // not used in last pipeline stage
     printf("printInt: process %i, parent %i\n", getpid(), getppid());
@@ -28,6 +34,9 @@ static void printInt(int input, int output) {
     printf("Received integer: %d\n", number);
 }
 
+/*
+ * Frees the Pipeline and exits the program.
+ */
 static void cleanupExit(Pipeline *p) {
     if (p) {
         Pipeline_free(p);
@@ -35,6 +44,9 @@ static void cleanupExit(Pipeline *p) {
     exit(-1);
 }
 
+/*
+ * Creates a Pipeline and uses it to execute two simple functions.
+ */
 int main() {
     printf("Setting up pipeline to send 1 between processes.\n");
 

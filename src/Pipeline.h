@@ -1,5 +1,5 @@
 /*
- * Pipeline.h
+ * Pipeline.h contains the struct for a basic Pipeline.
  *
  *  Created on: 26 Mar 2021
  *      Author: jonl, modified by 190012003
@@ -12,9 +12,10 @@
 #include "ListNode.h"
 
 typedef int Pipe[2];
-//typedef void (*Function)(int input, int output);
 
-/* You should define your struct Pipeline here */
+/*
+ * Definition of a basic Pipeline.
+ */
 typedef struct Pipeline {
     ListNode *head;
     int current_size;

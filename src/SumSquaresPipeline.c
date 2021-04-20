@@ -1,5 +1,5 @@
 /*
- * SumSquaresPipeline.c
+ * SumSquaresPipeline.c sums the squares of a certain number of numbers.
  *
  *  Created on: 26 Mar 2021
  *      Author: jonl
@@ -14,6 +14,9 @@
 
 int num_ints;
 
+/*
+ * Creates a bunch of ints 1 - num_ints to be sent to the next function.
+ */
 static void generateInts(int input, int output) {
     close(input); // not used in first pipeline stage
     printf("generateInts: process %i, parent %i\n", getpid(), getppid());
@@ -22,7 +25,9 @@ static void generateInts(int input, int output) {
     }
 }
 
-
+/*
+ * Squares all of the received ints and sends them to the next function.
+ */
 static void squareInts(int input, int output) {
     printf("squareInts: process %i, parent %i\n", getpid(), getppid());
     for (int i = 1; i <= num_ints; i++) {
@@ -33,7 +38,9 @@ static void squareInts(int input, int output) {
     }
 }
 
-
+/*
+ * Sums all of the squared ints and prints them.
+ */
 static void sumIntsAndPrint(int input, int output) {
     close(output); // not used in last pipeline stage
     printf("sumIntsAndPrint: process %i, parent %i\n", getpid(), getppid());
@@ -46,6 +53,9 @@ static void sumIntsAndPrint(int input, int output) {
     printf("sumIntsAndPrint: result = %i\n", result);
 }
 
+/*
+ * Frees the Pipeline and exits the program.
+ */
 static void cleanupExit(Pipeline *p) {
     if (p) {
         Pipeline_free(p);
@@ -53,7 +63,9 @@ static void cleanupExit(Pipeline *p) {
     exit(-1);
 }
 
-
+/*
+ * Creates a Pipeline and uses it to execute the three functions.
+ */
 int main() {
     scanf("%d", &num_ints);
     printf("Setting up pipeline to calculate the sum of squares of integers 1 to %i.\n", num_ints);

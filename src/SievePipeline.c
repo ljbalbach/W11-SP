@@ -1,5 +1,5 @@
 /*
- * SievePipeline.c
+ * SievePipeline.c performs the Sieve of Eratosthenes
  *
  *  Created on: 26 Mar 2021
  *      Author: jonl
@@ -15,6 +15,9 @@
 static int max_ints;
 static int number_of_primes;
 
+/*
+ * Creates a bunch of ints 2 - num_ints to be sent to the next function.
+ */
 static void generateInts(int input, int output) {
     close(input); // not used in first pipeline stage
     printf("generateInts: process %i, parent %i\n", getpid(), getppid());
@@ -47,7 +50,9 @@ static void sieveInts(int input, int output) {
     }
 }
 
-
+/*
+ * Frees the Pipeline and exits the program.
+ */
 static void cleanupExit(Pipeline *p) {
     if (p) {
         Pipeline_free(p);
@@ -55,6 +60,9 @@ static void cleanupExit(Pipeline *p) {
     exit(-1);
 }
 
+/*
+ * Creates a Pipeline and uses it to execute the sieve.
+ */
 int main() {
     scanf("%i %i", &number_of_primes, &max_ints);
     printf("Setting up pipeline to sieve out the first %i prime numbers up to %i\n", number_of_primes, max_ints);
