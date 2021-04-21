@@ -31,16 +31,16 @@ bool Pipeline_add(Pipeline* this, Function f) {
 void Pipeline_execute(Pipeline* this) {
     ListNode *current = this->head;
     int child;
-    Pipe pipeList[this->current_size];
+    Pipe pipeList[this->current_size];                      //idea from https://stackoverflow.com/questions/19825489/forking-and-piping-processes-in-c
 
     for (int i = 1; i < this->current_size + 1; i++) {
         
-        if (pipe(pipeList[i]) != 0) {
+        if (pipe(pipeList[i]) != 0) {                       //pipe the used pipe
             printf("Failed to create pipe");
             exit(1);
         }
 
-        if ((child = fork()) < 0) {
+        if ((child = fork()) < 0) {                         //create another process
             printf("Failed to create child #0");
             exit(1);
         }
@@ -51,11 +51,11 @@ void Pipeline_execute(Pipeline* this) {
             if (i != 1) {                                   //ultimate parent cannot exit or the program will not continue
                 exit(0);
             }
-            break;
+            break;                                          //ultimate parent leaves loop and returns to the main function
         } else if (current->next == NULL) {                 //end of list?
             exit(0);
         }
-        current = current->next;
+        current = current->next;                            //child continues to next stage of loop
     }
 }
 
